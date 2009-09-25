@@ -1,0 +1,51 @@
+# Ref Url: http://reinh.com/blog/2009/03/02/a-git-workflow-for-agile-teams.html
+# 
+# NOTES:
+# 1. We use the following convention throughout the rest of this doc:
+#    * <pivotaltracker_id> ... id of story/chore/bug as provided by pivotal tracker
+#    * <type>              ... story, chore or bug
+#    * <short_description> ... a very short description of the story, chore or bug
+#    * <description>       ... a description of the story, chore or bug
+#
+
+1. To start working on a feature:
+
+    $ cd <PROJECT_DIR>
+    $ git checkout master
+    $ git fetch origin master
+    $ git rebase origin/master
+
+    a. Assuming i'm working on something new:
+
+       $ git checkout -b <pivotaltracker_id>-<type>-<short_description>
+
+       Examples:
+
+       $ git checkout -b 889900-feature-admin_reboots_system
+       $ git checkout -b 889901-chore-cleanup_config_environment
+       $ git checkout -b 889902-bug-cannot_shutdown_until_all_system_tasks_complete
+
+    b. Assuming i'm already onto something:
+
+       $ git checkout <pivotaltracker_id>-<type>-<short_description>
+       $ git rebase origin/master
+
+   NOTES:
+   * Remember to run test after rebase, nothing new should break
+
+3. Continue to work on my feature & finish it & commit frequently
+
+4. Squash commits with interactive rebase:
+
+   $ git rebase -i origin/master
+
+   Suggested final commited message after squashing would be:
+
+   > [#<pivotaltracker_id>] <description>
+
+5. Checkout master & merge with branch:
+
+   $ git checkout master
+   $ git merge <pivotaltracker_id>-<type>-<short_description>
+   $ git push origin/master
+
