@@ -1,0 +1,49 @@
+# Ref Urls:
+# * http://ariejan.net/2009/09/05/git-tag-mini-cheat-sheet-revisited/
+# * http://book.git-scm.com/3_git_tag.html
+# * http://blog.stonean.com/2009/02/17/git-branch-from-a-tag/
+
+1. When we do release:
+
+    $ git tag -a <version>
+    
+    Where <version> takes the form 'vx.y.z':
+    * v ... fixed to signify 'version'
+    * x ... major number (usually '0')
+    * y ... minor number (increment with each group of features release, can be a single or multiple features)
+    * z ... patch number (increment with each group of bug fixes release, can be single or multiple fixes)
+    
+    The format of the message follows this:
+    
+    > Short description of what this release addresses
+    >
+    > Features:
+    > * ...
+    > * ...
+    >
+    > Bug Fixes:
+    > * ...
+    > * ...
+    
+2. When we want to do bug fix for a specific release:
+
+    $ git checkout <version>
+    $ git checkout -b <id>-<type>-<description>
+    
+    Where:
+    * <id> ... entry id provided by pivotal tracker
+    * <type> ... whether it is a story, chore or bug (in this case 'bug')
+    * <description> ... short description on what the branch aims to work on
+    
+3. When the bug fix is completed:
+
+    $ git rebase -i <version>
+    $ git tag -a <new_patch_version>
+    $ git push origin tag <new_patch_version>
+            
+    To make sure the remote master reflects the bug fix:
+    
+    $ git checkout master
+    $ git pull origin master
+    $ git merge <new_patch_version>
+    $ git push origin master
