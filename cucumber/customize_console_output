@@ -1,0 +1,13 @@
+By default, we suppress the cucumber's console dump by formatting
+it as 'progress'. Meaning that instead of seeing all the scenarios
+dumped out on the console, we just see a progress of dots.
+
+If u don't like this, u can update <PROJECT_ROOT>/cucumber.yml to
+replace '--format progress' with '--format pretty'. Meaning after
+customization, u get something like the following:
+
+> default: -r features/support -r features/step_definitions --format progress
+
+Pls do not commit the changes.
+
+That's all. Enjoy !!
