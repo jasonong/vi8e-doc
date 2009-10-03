@@ -1,0 +1,34 @@
+1. Fetch change index from repository 
+
+    $ git fetch origin
+
+2. Rebase repository master branch with local master branch
+
+    $ git checkout master
+    $ git rebase origin/master
+
+3. Rebase local working branch with local master branch
+
+    $ git checkout <branch>
+    $ git rebase master
+    
+4. If there's any conflict, rebasing will halt and merging process will begin
+
+    a) Find out what are the conflicts
+
+      $ git status
+      ... unmerged: app/view/index.html.erb
+
+    b) Resolve the conflicting code in Vim
+    
+    c) Add the changes 
+
+      $ git add app/view/index.html.erb
+
+    d) Continue the rebase
+
+      $ git rebase --continue
+
+5. If at anytime rebase process gets too messy, abort and restart
+
+    $ git rebase --abort
