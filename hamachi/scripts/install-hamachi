@@ -1,0 +1,27 @@
+#!/bin/bash
+# -----------------------------------------------------------------
+# Ref Urls:
+# * http://www.supware.net/HamachiUbuntuHowto/
+# * http://objectliteral.blogspot.com/search?q=hamachi
+# -----------------------------------------------------------------
+
+sudo modprobe tun
+sudo echo 'tun' >> //etc/modules
+
+[ -d /dev/net ] || sudo mkdir /dev/net
+[ -f /dev/net/tun ] || sudo mknod /dev/net/tun c 10 200
+
+( cd /tmp && \
+  wget http://files.hamachi.cc/linux/hamachi-0.9.9.9-20-lnx.tar.gz && \
+  tar -zxvf hamachi-0.9.9.9-20-lnx.tar.gz && \
+  cd hamachi-0.9.9.9-20-lnx && \
+  sudo make install && \
+  sudo tuncfg )
+
+sudo groupadd hamachi
+sudo gpasswd -a user hamachi
+sudo gpasswd -a root hamachi
+sudo chmod 760 /var/run/tuncfg.sock
+sudo chgrp hamachi /var/run/tuncfg.sock
+
+# __END__

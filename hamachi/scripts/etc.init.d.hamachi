@@ -1,0 +1,33 @@
+hamachi_start() {
+  echo "Starting hamachi..."
+  /sbin/tuncfg
+  /usr/bin/hamachi -c /etc/hamachi start
+  /bin/chmod 760 /var/run/tuncfg.sock
+  /bin/chgrp hamachi /var/run/tuncfg.sock
+}
+
+hamachi_stop() {
+  echo "Stopping hamachi..."
+  killall tuncfg
+  /usr/bin/hamachi -c /etc/hamachi stop
+}
+
+hamachi_restart() {
+  hamachi_stop
+  sleep 1
+  hamachi_start
+}
+
+case "$1" in
+'start')
+  hamachi_start
+  ;;
+'stop')
+  hamachi_stop
+  ;;
+'restart')
+  hamachi_restart
+  ;;
+*)
+  hamachi_start
+esac

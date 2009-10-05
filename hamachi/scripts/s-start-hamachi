@@ -1,0 +1,23 @@
+#!/bin/bash
+
+NETWORK_NAME=${1}
+NETWORK_PASSWD=${2}
+HAMACHI='sudo /usr/bin/hamachi -c /etc/hamachi'
+
+if [ -z ${NETWORK_NAME} ]
+then
+  echo 'Network name not specified !!'
+  exit 1
+elif [ -z ${NETWORK_PASSWD} ]
+then
+  echo 'Network password not specified !!'
+  exit 1
+fi
+
+sudo /etc/init.d/hamachi start
+${HAMACHI} login
+${HAMACHI} join ${NETWORK_NAME} ${NETWORK_PASSWD}
+${HAMACHI} go-online ${NETWORK_NAME}
+${HAMACHI} list
+
+# __END__

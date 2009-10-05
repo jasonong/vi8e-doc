@@ -1,0 +1,15 @@
+#!/bin/bash
+
+HAMACHI='sudo /usr/bin/hamachi -c /etc/hamachi'
+WHOAMI=`whoami`
+
+for network in `${HAMACHI} list | grep '\[' | sed 's/.*\[//' | sed 's/\]//' | grep -v ${WHOAMI}`
+do
+  ${HAMACHI} go-offline ${network}
+  ${HAMACHI} leave ${network}
+  ${HAMACHI} logout
+done
+
+sudo /etc/init.d/hamachi stop
+
+# __END__

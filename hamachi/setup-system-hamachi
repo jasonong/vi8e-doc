@@ -1,0 +1,19 @@
+#!/bin/bash
+# -----------------------------------------------------------------
+# Setups hamachi as a system service
+# -----------------------------------------------------------------
+
+./scripts/install-hamachi
+
+sudo hamachi-init -c /etc/hamachi
+sudo cp scripts/etc.init.d.hamachi /etc/init.d/hamachi
+sudo cp scripts/s-start-hamachi /usr/local/bin
+sudo cp scripts/s-stop-hamachi /usr/local/bin
+
+HAMACHI='sudo hamachi -c /etc/hamachi'
+
+${HAMACHI} start
+${HAMACHI} set-nick `whoami`
+${HAMACHI} stop
+
+# __END__
