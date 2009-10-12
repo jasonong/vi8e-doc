@@ -5,8 +5,13 @@
 # * http://objectliteral.blogspot.com/search?q=hamachi
 # -----------------------------------------------------------------
 
+if [ `uname -m` == 'x86_64' ] 
+then
+  sudo apt-get install ia32-libs
+fi
+
 sudo modprobe tun
-sudo echo 'tun' >> //etc/modules
+sudo sh -c echo 'tun' >> /etc/modules
 
 [ -d /dev/net ] || sudo mkdir /dev/net
 [ -f /dev/net/tun ] || sudo mknod /dev/net/tun c 10 200
