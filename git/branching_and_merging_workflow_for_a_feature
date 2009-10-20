@@ -12,7 +12,7 @@
 
     $ cd <PROJECT_DIR>
     $ git checkout master
-    $ git fetch origin master
+    $ git fetch origin
     $ git rebase origin/master
 
     a. Assuming i'm working on something new:
@@ -25,10 +25,14 @@
        $ git checkout -b 889901-chore-cleanup_config_environment
        $ git checkout -b 889902-bug-cannot_shutdown_until_all_system_tasks_complete
 
-    b. Assuming i'm already onto something:
+    b. Assuming i'm already onto something (on branch
+       <pivotaltracker_id>-<type>-<short_description>):
 
-       $ git checkout <pivotaltracker_id>-<type>-<short_description>
+       $ git checkout master
+       $ git fetch origin
        $ git rebase origin/master
+       $ git checkout <pivotaltracker_id>-<type>-<short_description>
+       $ git rebase master
 
    NOTES:
    * Remember to run test after rebase, nothing new should break
@@ -37,7 +41,7 @@
 
 4. Squash commits with interactive rebase:
 
-   $ git rebase -i origin/master
+   $ git rebase -i master
 
    Suggested final commited message after squashing would be:
 
@@ -46,6 +50,6 @@
 5. Checkout master & merge with branch:
 
    $ git checkout master
-   $ git merge <pivotaltracker_id>-<type>-<short_description>
+   $ git rebase <pivotaltracker_id>-<type>-<short_description>
    $ git push origin/master
 
