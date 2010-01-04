@@ -1,0 +1,30 @@
+Installing Gems
+- gem install cucumber -v 0.5.1 & selenium -v 1.2.17 (install these first else rake tasks will scream)
+- rake gems:install RAILS_ENV=envs (envs: development, test & cucumber)
+
+Migration
+- rake db:migrate RAILS_ENV=envs (envs: development, test & cucumber)
+
+Bootstrapping
+- We're using bootstrapper & factory girl to bootstrap data for development environment
+- rake db:bootstrap
+
+Cucumber
+- We're using rake tasks to run cucumber tests
+- rake cucumber tags
+- tag conventions are as follows
+  - @outstanding-alex: features to be implemented by Alex
+  - @js-outstanding-alex: features with javascript to be implemented by Alex (implies selenium-client)
+  - @ok: features that has been implemented and passed
+  - @broken: features that had passed but now broken
+  - @todo-cleanup: features that needs refactoring
+  - @legacy: old features not in used
+
+Development workflow
+- We use git fetch & rebase extensively and always work on a local branch that's branched from local master
+
+Code merging
+- git checkout master
+- git fetch origin
+- git log/whatchanged ..origin/master
+- git rebase origin/master
