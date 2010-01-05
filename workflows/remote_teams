@@ -1,5 +1,5 @@
 Installing Gems
-- gem install cucumber -v 0.5.1 & selenium -v 1.2.17 (install these first else rake tasks will scream)
+- gem install cucumber -v 0.5.1 & selenium-client -v 1.2.17 (install these first else rake tasks will scream)
 - rake gems:install RAILS_ENV=envs (envs: development, test & cucumber)
 
 Migration
