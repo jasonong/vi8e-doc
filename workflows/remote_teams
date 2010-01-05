@@ -11,11 +11,12 @@ Bootstrapping
 
 Cucumber
 - We're using rake tasks to run cucumber tests
-- rake cucumber tags
+- rake cucumber:tags
 - tag conventions are as follows
   - @outstanding-alex: features to be implemented by Alex
   - @js-outstanding-alex: features with javascript to be implemented by Alex (implies selenium-client)
-  - @ok: features that has been implemented and passed
+  - @ok: non javascript features that has been implemented and passed
+  - @js-ok: javascript features that has been implemented and passed
   - @broken: features that had passed but now broken
   - @todo-cleanup: features that needs refactoring
   - @legacy: old features not in used
