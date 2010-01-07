@@ -20,6 +20,12 @@ Cucumber
   - @broken: features that had passed but now broken
   - @todo-cleanup: features that needs refactoring
   - @legacy: old features not in used
+- running features that requires js support, u need 3 terminals to run each of the following:
+  - $ rake selenium:rc:start
+  - $ rake selenium:rails:start
+  - $ rake cucumber:js-*
+- it is possible to force running of all features in selenium mode by doing:
+  - $ SELENIUM_MODE=true rake cucumber:*
 
 Development workflow
 - We use git fetch & rebase extensively and always work on a local branch that's branched from local master
